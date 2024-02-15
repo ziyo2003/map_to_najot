@@ -14,7 +14,6 @@ class YandexMapBloc extends Bloc<MapEvent, YandexMapState> {
             status: Status.loading,
             distination: const Point(latitude: 41.285703, longitude: 69.203733),
             myPoint: const Point(latitude: 0, longitude: 0), distance: null,
-
           ),
         ){
     on<StartedBloc>((event, emit) async {
@@ -52,7 +51,7 @@ class YandexMapBloc extends Bloc<MapEvent, YandexMapState> {
       emit(state.copyWith(
         route: PolylineMapObject(
           strokeColor: Colors.green,
-          strokeWidth: 3,
+          strokeWidth: 2.5,
           mapId: const MapObjectId("route"),
           polyline: Polyline(
             points: result.routes?.first.geometry ?? [],
@@ -62,12 +61,12 @@ class YandexMapBloc extends Bloc<MapEvent, YandexMapState> {
     });
   }
   double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
-    var p = 0.017453292519943295; // Math.PI / 180
+    var p = 0.017453292519943295;
     var c = cos;
     var a = 0.5 - c((lat2 - lat1) * p)/2 +
         c(lat1 * p) * c(lat2 * p) *
             (1 - c((lon2 - lon1) * p))/2;
-    return 12742 * asin(sqrt(a)); // 2 * R; R = 6371 km
+    return 12742 * asin(sqrt(a));
   }
 }
 

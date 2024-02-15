@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       create: (context) => YandexMapBloc(),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: GoToDistination(),
+        home: GoToDestination(),
       ),
     );
   }
